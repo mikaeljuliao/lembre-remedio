@@ -278,3 +278,49 @@ form.editando {
     transform: translate(-50%, -50%);
   }
 }
+
+
+
+.medicamento-item {
+  position: relative;
+  padding-right: 120px; /* espaço para os botões no canto direito */
+}
+
+.acoes {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.acoes button {
+  padding: 11px 20px;
+  background-color:  #e0eefad3;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+
+.btn-remover {
+ 
+  color: red;
+}
+
+.btn-remover:hover {
+  color: white;
+  background-color: red;
+}
+
+.btn-editar { 
+  color: green;
+}
+
+.btn-editar:hover {
+  color: white;
+  background-color: green;
+}

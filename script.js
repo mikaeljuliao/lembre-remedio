@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
   observacoes.innerHTML = `<strong> Observação: </strong>${medicamento.observacoes}`;
 
   const botoes = document.createElement('div');
+  botoes.classList.add('acoes')
   botoes.innerHTML = `
     <button class="btn-remover" data-index="${index}">Remover</button>
     <button class="btn-editar" data-index="${index}">Editar</button>
