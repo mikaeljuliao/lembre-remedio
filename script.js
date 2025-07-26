@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('modalConfirmacao');
   const btnCancelarModal = document.getElementById('btnCancelarModal');
   const btnConfirmarModal = document.getElementById('btnConfirmarModal');
+  const btnPararAlarme = document.getElementById('btnPararAlarme');
+  const controleDoAlarme = document.getElementById('controle-alarme')
 
 
   let indiceEditando = null; // esse let vai guardar qual item está editando, se for null, significa que não está editando nada, só adicionando novo
@@ -15,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let nomesMedicamentos = [];
   let indiceParaRemover = null;
   const alarmesJaTocados = new Set();
+  let intervaloSomAlarme = null;
 
   // Salva no localStorage
   function salvarNoArmazenamento() {
@@ -29,6 +32,21 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       mensagem.style.display = 'none';
     }, 3000);
+  }
+  function iniciarAlarmeRepetitivo (){
+    const audio = document.getElementById('alarme-audio');
+    if(!audio) return;
+
+    controleDoAlarme.style.display = 'block'
+
+    audio.play.catch((erro) =>{
+      console.warn('erro ao tocar áudio:', erro)
+    });
+
+    intervaloSomAlarme = setInterval(() =>{
+      audio.currentTime = 0;
+      audio.play().catch()
+    })
   }
 
   // Cria o item da lista com os dados
@@ -272,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
       textoBnner.style.opacity = 1
     }, 500)
 
-   }, 5000)
+   }, 6000)
   // Carrega o JSON de medicamentos
   fetch('data/medicamentos.json')
     .then((res) => res.json())

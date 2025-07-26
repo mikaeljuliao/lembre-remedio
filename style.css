@@ -228,5 +228,7 @@ form.editando {
   font-size: 0.9rem;
   margin-top: 4px;
   display: block;
-  box-shadow: 0px 0px 10px black;
+  box-shadow: 0px 1px 0px #2e86de;
+  margin-top: -8px;
+  margin-bottom: 15px;
 }

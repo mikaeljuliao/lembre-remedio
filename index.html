@@ -6,7 +6,7 @@
   <title>LembreMed 💊</title>
   <link rel="stylesheet" href="style.css" />
 </head>
- <audio id="alarme-audio" preload="auto" src="sons/042245_casio-f-91w-alarm-76669.mp3"></audio>
+ 
 <body>
    
   <main class="container">
@@ -27,7 +27,7 @@
       <input type="number" id="horario" placeholder="A cada quantas horas?" step="0.01" min="0.01" />
       <small class="dica-horario">
     ⏱️ Você pode usar horas com vírgula! <br />
-     Exemplos: 0.5 = 30min | 0.25 = 15min | 0.1 = 6min ou 0.01 = 1min
+     Exemplos: 0,5 = 30min | 0,25 = 15min | 0,1 = 6min ou 0,01 = 35sgs
     </small>
 
       <label for="obs">Observações:</label>
@@ -59,6 +59,12 @@
   <div id="banner-mensagens" class="banner-topo">
     <p id="texto-banner"> Bem-vindo ao LembreMed</p>
   </div>
+  <audio id="alarme-audio" src="sons/alarme1.mp3" preload="auto"></audio>
+
+<div id="controle-alarme" class="controle-alarme" ">
+  <p>🔔 Alarme tocando!</p>
+  <button id="btnPararAlarme">Parar alarme</button>
+</div>
   <script src="script.js"></script>
 </body>
 </html>
