@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LembreMed 💊</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+ <audio id="alarme-audio" preload="auto" src="sons/042245_casio-f-91w-alarm-76669.mp3"></audio>
+<body>
+   
+  <main class="container">
+    <h1>LembreMed 💊</h1>
+
+    <form id="medForm">
+        <p id="status-edicao"> Modo edição ativado</p>
+      <div class="campo-autocomplete">
+        <label for="nome">Nome do Medicamento:</label>
+        <input type="text" id="nome" name="nome" autocomplete="Digite o medicamento" required />
+        <ul id="sugestoes"></ul>
+      </div>
+
+      <label for="dosagem">Dosagem:</label>
+      <input type="text" id="dosagem" name="dosagem" autocomplete="EX: 500mg" required />
+
+      <label for="horario">Horário:</label>
+      <input type="number" id="horario" placeholder="A cada quantas horas?" step="0.01" min="0.01" />
+
+      <label for="obs">Observações:</label>
+      <textarea id="obs" name="obs"></textarea>
+
+      <button type="submit">Adicionar Medicamento</button>
+    </form>
+
+    <div id="mensagemDeSucesso" class="mensagem-de-sucesso">
+       <p> Medicamento salvo com sucesso! </p>
+    </div>
+
+    <section>
+      <h2>Meus Medicamentos</h2>
+      <ul id="listaMedicamentos"></ul>
+    </section>
+  </main>
+  
+  <div id="modalConfirmacao" class="modal-overlay">
+  <div class="modal-box">
+    <p id="modalMensagem">Tem certeza que deseja remover este medicamento?</p>
+    <div class="modal-botoes">
+      <button id="btnCancelarModal">Cancelar</button>
+      <button id="btnConfirmarModal">Remover</button>
+    </div>
+  </div>
+  </div>
+
+  <div id="banner-mensagens" class="banner-topo">
+    <p id="texto-banner"> Bem-vindo ao LembreMed</p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

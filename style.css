@@ -1,0 +1,225 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f7fa;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #3a3a3a;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+p#status-edicao{
+   display: none;
+   color: #e67e22;
+   font-weight: bold;
+   font-size: 20px;
+   text-align: center;
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+textarea,
+button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  background-color: #2e86de;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #1c5fc4;
+}
+
+#listaMedicamentos {
+  margin-top: 20px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.medicamento-item {
+  background: #f0f8ff;
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 6px;
+  border-left: 5px solid #2e86de;
+}
+
+.campo-autocomplete {
+  position: relative;
+}
+
+#sugestoes {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  max-height: 150px;
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  z-index: 10;
+}
+
+.sugestao-item {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.sugestao-item:hover {
+  background-color: #f0f0f0;
+}
+
+form.editando {
+  color:  black;
+  transition: all 0.3s ease;
+}
+
+.modo-edicao {
+  animation: pulseEdit 1s infinite alternate;
+}
+
+@keyframes pulseEdit {
+  from {
+    box-shadow: 0 0 0px transparent;
+  }
+  to {
+    color:  #e67e22;
+    font-size: 16.2px;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  display: none;
+}
+
+.modal-box {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 300px;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.modal-botoes {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-botoes button {
+  padding: 8px 16px;
+  margin: 3px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#btnCancelarModal {
+  background: #ccc;
+}
+
+#btnConfirmarModal {
+  background: #e74c3c;
+  color: white;
+}
+
+.mensagem-de-sucesso {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #28a745; /* verde sucesso */
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  font-weight: bold;
+  z-index: 9999;
+  animation: aparecer 0.3s ease-in-out;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.banner-topo{
+    width: 100%;
+    background-color: #0077cc;
+    color: white;
+    text-align: center;
+    padding: 10px 0px;
+    font-weight: bold;
+    font-size: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    transition: opacity 0.5s ease-in-out;
+}
+.banner-topo p {
+    margin: 0;
+    padding: 2px;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+   
+}
