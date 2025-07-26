@@ -33,22 +33,38 @@ document.addEventListener('DOMContentLoaded', () => {
       mensagem.style.display = 'none';
     }, 3000);
   }
+
+
   function iniciarAlarmeRepetitivo (){
+  const audio = document.getElementById('alarme-audio');
+  if (!audio) return;
+
+  controleDoAlarme.style.display = 'block';
+
+  // Aqui estava o erro (FALTAVA os parênteses em play)
+  audio.play().catch((erro) =>{
+    console.warn('erro ao tocar áudio:', erro);
+  });
+
+  intervaloSomAlarme = setInterval(() =>{
+    audio.currentTime = 0;
+    audio.play().catch((erro) =>{
+      console.warn('Erro ao repetir áudio', erro);
+    });
+  }, 7000);
+
+}
+
+  function pararAlarmeRepetitivo (){
     const audio = document.getElementById('alarme-audio');
     if(!audio) return;
 
-    controleDoAlarme.style.display = 'block'
-
-    audio.play.catch((erro) =>{
-      console.warn('erro ao tocar áudio:', erro)
-    });
-
-    intervaloSomAlarme = setInterval(() =>{
-      audio.currentTime = 0;
-      audio.play().catch()
-    })
+    clearInterval(intervaloSomAlarme);// para o setInterval
+    intervaloSomAlarme = null
+    audio.pause(); //pausa o som atual
+    audio.currentTime = 0; //volta pro começo
+    controleDoAlarme.style.display = 'none'
   }
-
   // Cria o item da lista com os dados
   function criarItemDaLista(medicamento, index) {
   const item = document.createElement('li');
@@ -63,25 +79,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const atualizarContador = () => {
     const agora = new Date();
     const diferenca = horaAlvo - agora;
-
+     
     if (diferenca <= 0) {
-      clearInterval(intervalo);
-      tempoRestanteSpan.textContent = '⏰ Tempo esgotado!';
+   clearInterval(intervalo);
+  tempoRestanteSpan.textContent = '⏰ Tempo esgotado!';
 
-      const audio = document.getElementById('alarme-audio');
-      const idUnico = medicamento.nome + medicamento.tempoAlvoEmMilessegundos;
-      
-    // explicação pra mim mesmo afiar meu racicionio com if: Se o audio existir E se ainda não tocamos esse som especifico, então bora tocar ele agora. (ai dentro do if o paly vai fazer com que ele comece a tocar)
-      if (audio && ! alarmesJaTocados.has(idUnico)) {
-        audio.play().catch((erro) => {
-          console.warn('Autoplay bloqueado pelo navegador.', erro);
-        });
-        alarmesJaTocados.add(idUnico);
-      }
+  const idUnico = medicamento.nome + medicamento.tempoAlvoEmMilessegundos;
 
-      return;
-    }
+  if (!alarmesJaTocados.has(idUnico)) {
+    iniciarAlarmeRepetitivo();
+    alarmesJaTocados.add(idUnico);
+  }
 
+  return;
+}
     const totalSegundos = Math.floor(diferenca / 1000);
     const horas = Math.floor(totalSegundos / 3600);
     const minutos = Math.floor((totalSegundos % 3600) / 60);
@@ -302,6 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch((erro) => console.error('Erro ao carregar medicamentos:', erro));
 
   formularioMedicamento.addEventListener('submit', aoEnviarFormulario);
+  btnPararAlarme.addEventListener('click', pararAlarmeRepetitivo); 
   renderizarListaDeMedicamentos();
 
 });11
