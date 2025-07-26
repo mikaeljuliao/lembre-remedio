@@ -16,7 +16,7 @@
         <p id="status-edicao"> Modo edição ativado</p>
       <div class="campo-autocomplete">
         <label for="nome">Nome do Medicamento:</label>
-        <input type="text" id="nome" name="nome" autocomplete="Digite o medicamento" required />
+        <input type="text" id="nome" name="nome" autocomplete="Digijte o medicamento" required />
         <ul id="sugestoes"></ul>
       </div>
 
@@ -25,6 +25,10 @@
 
       <label for="horario">Horário:</label>
       <input type="number" id="horario" placeholder="A cada quantas horas?" step="0.01" min="0.01" />
+      <small class="dica-horario">
+    ⏱️ Você pode usar horas com vírgula! <br />
+     Exemplos: 0.5 = 30min | 0.25 = 15min | 0.1 = 6min ou 0.01 = 1min
+    </small>
 
       <label for="obs">Observações:</label>
       <textarea id="obs" name="obs"></textarea>

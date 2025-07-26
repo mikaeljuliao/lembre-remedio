@@ -223,3 +223,10 @@ form.editando {
     transition: opacity 0.5s ease-in-out;
    
 }
+.dica-horario{
+  color: #555;
+  font-size: 0.9rem;
+  margin-top: 4px;
+  display: block;
+  box-shadow: 0px 0px 10px black;
+}
