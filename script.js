@@ -70,6 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const item = document.createElement('li');
   item.classList.add('medicamento-item');
 
+  const botaoRecomecar = document.createElement('button');
+  botaoRecomecar.textContent = 'Recomeçar';
+  botaoRecomecar.classList.add('btn-recomecar')
+  botaoRecomecar.style.display = 'none'
+
   const tempoRestanteSpan = document.createElement('span');
   tempoRestanteSpan.classList.add('tempo-restante');
 
@@ -79,9 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const atualizarContador = () => {
     const agora = new Date();
     const diferenca = horaAlvo - agora;
-     
-    if (diferenca <= 0) {
-   clearInterval(intervalo);
+
+if (diferenca <= 0) {
+  clearInterval(intervalo);
   tempoRestanteSpan.textContent = '⏰ Tempo esgotado!';
 
   const idUnico = medicamento.nome + medicamento.tempoAlvoEmMilessegundos;
@@ -90,6 +95,17 @@ document.addEventListener('DOMContentLoaded', () => {
     iniciarAlarmeRepetitivo();
     alarmesJaTocados.add(idUnico);
   }
+  botaoRecomecar.style.display ='block'
+  // Cria e insere o botão de recomeçar
+  tempoRestanteSpan.appendChild(document.createElement('br'));
+ 
+
+  // Evento do botão
+  botaoRecomecar.addEventListener('click', () => {
+    medicamento.tempoAlvoEmMilessegundos = Date.now() + medicamento.intervaloHoras * 60 * 60 * 1000;
+    salvarNoArmazenamento();
+    renderizarListaDeMedicamentos();
+  });
 
   return;
 }
@@ -119,6 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
     <button class="btn-remover" data-index="${index}">Remover</button>
     <button class="btn-editar" data-index="${index}">Editar</button>
   `;
+
+  botoes.appendChild(botaoRecomecar)
 
   item.appendChild(textoPrincipal);
   item.appendChild(tempoRestanteSpan);

@@ -324,3 +324,13 @@ form.editando {
   color: white;
   background-color: green;
 }
+
+.btn-recomecar {
+  color: #0077cc;
+  margin-top: 10px;
+}
+
+.btn-recomecar:hover {
+  background-color: #0077cc;
+  color: white;
+}
