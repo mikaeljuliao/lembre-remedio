@@ -18,6 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let indiceParaRemover = null;
   const alarmesJaTocados = new Set();
   let intervaloSomAlarme = null;
+  let historicoDeDoses = JSON.parse(localStorage.getItem('historicoDeDoses')) || [];
+
+  function salvarHistorico () {
+    localStorage.setItem('historicoDeDoses', JSON.stringify(historicoDeDoses));
+  }
 
   // Salva no localStorage
   function salvarNoArmazenamento() {
@@ -94,6 +99,14 @@ if (diferenca <= 0) {
   if (!alarmesJaTocados.has(idUnico)) {
     iniciarAlarmeRepetitivo();
     alarmesJaTocados.add(idUnico);
+    historicoDeDoses.push({
+      nome: medicamento.nome,
+      dosagem: medicamento.dosagem,
+      horarioTomado: new Date().toDateString(),
+      intervalo: medicamento.intervaloHoras
+    });
+    salvarHistorico()
+    renderizarHistorico()
   }
   botaoRecomecar.style.display ='block'
   // Cria e insere o botão de recomeçar
@@ -162,6 +175,25 @@ if (diferenca <= 0) {
 
   return item;
 }
+
+ function renderizarHistorico () {
+    const listaDoHistorico = document.getElementById('listaHistorico');
+    listaDoHistorico.innerHTML = '';
+
+    const historicoOrdenado = [...historicoDeDoses].reverse() // mais recente primeiro
+
+    historicoOrdenado.forEach(((registro) =>{
+      const item = document.createElement('li');
+      const data = new Date(registro.horarioTomado);
+      
+      item.innerHTML = `
+      <strong>${registro.nome}</strong> - ${registro.dosagem} <br>
+      Tomado em: ${data.toLocaleString()}<br>
+      Intervalo: ${registro.intervalo}h
+    `;
+    listaDoHistorico.appendChild(item);
+    }))
+  }
 
   // Renderiza a lista de medicamentos salvos
   function renderizarListaDeMedicamentos() {
@@ -334,6 +366,7 @@ if (diferenca <= 0) {
   formularioMedicamento.addEventListener('submit', aoEnviarFormulario);
   btnPararAlarme.addEventListener('click', pararAlarmeRepetitivo); 
   renderizarListaDeMedicamentos();
+  renderizarHistorico()
 
 });11
 
