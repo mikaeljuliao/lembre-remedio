@@ -16,9 +16,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const medicamentosSalvos = JSON.parse(localStorage.getItem('medicamentos')) || [];
   let nomesMedicamentos = [];
   let indiceParaRemover = null;
-  const alarmesJaTocados = new Set();
+  const alarmesJaTocados = new Set(JSON.parse(localStorage.getItem('alarmesJaTocados')) || []);
   let intervaloSomAlarme = null;
   let historicoDeDoses = JSON.parse(localStorage.getItem('historicoDeDoses')) || [];
+
+ 
+  function salvarAlarmesTocados() {
+  localStorage.setItem('alarmesJaTocados', JSON.stringify([...alarmesJaTocados]));
+}
 
   function salvarHistorico () {
     localStorage.setItem('historicoDeDoses', JSON.stringify(historicoDeDoses));
@@ -97,12 +102,15 @@ if (diferenca <= 0) {
   const idUnico = medicamento.nome + medicamento.tempoAlvoEmMilessegundos;
 
   if (!alarmesJaTocados.has(idUnico)) {
+    salvarAlarmesTocados()
     iniciarAlarmeRepetitivo();
     alarmesJaTocados.add(idUnico);
+    salvarAlarmesTocados()
+    
     historicoDeDoses.push({
       nome: medicamento.nome,
       dosagem: medicamento.dosagem,
-      horarioTomado: new Date().toDateString(),
+      horarioTomado: new Date().toISOString(),
       intervalo: medicamento.intervaloHoras
     });
     salvarHistorico()
@@ -176,7 +184,7 @@ if (diferenca <= 0) {
   return item;
 }
 
-function renderizarHistorico () {
+ function renderizarHistorico() {
   const listaDoHistorico = document.getElementById('listaHistorico');
   listaDoHistorico.innerHTML = '';
 
@@ -185,27 +193,31 @@ function renderizarHistorico () {
   historicoOrdenado.forEach((registro, index) => {
     const item = document.createElement('li');
     const data = new Date(registro.horarioTomado);
-    
+
+    // O índice real no array original (não o reverse)
+    const indiceOriginal = historicoDeDoses.length - 1 - index;
+
     item.innerHTML = `
       <strong>${registro.nome}</strong> - ${registro.dosagem} <br>
       Tomado em: ${data.toLocaleString()}<br>
       Intervalo: ${registro.intervalo}h
-      <br><button class="btn-remover-historico" data-index="${historicoDeDoses.length - 1 - index}">Remover</button>
+      <br><button class="btn-remover-historico" data-index="${indiceOriginal}">Remover</button>
     `;
     listaDoHistorico.appendChild(item);
   });
 
-  // ⬇️ Adiciona os eventos nos botões de remover
+  // Adiciona os eventos depois que os elementos foram criados
   document.querySelectorAll('.btn-remover-historico').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const index = btn.dataset.index;
-      historicoDeDoses.splice(index, 1);
-      salvarHistorico();
-      redenrizarHistorico(); // atualiza a lista
+      const index = parseInt(btn.dataset.index, 10); // garante que é número
+      if (!isNaN(index)) {
+        historicoDeDoses.splice(index, 1);
+        salvarHistorico();
+        renderizarHistorico(); // chama de novo para atualizar
+      }
     });
   });
-}
-  
+} 
 
   // Renderiza a lista de medicamentos salvos
   function renderizarListaDeMedicamentos() {
@@ -378,7 +390,7 @@ function renderizarHistorico () {
   formularioMedicamento.addEventListener('submit', aoEnviarFormulario);
   btnPararAlarme.addEventListener('click', pararAlarmeRepetitivo); 
   renderizarListaDeMedicamentos();
-  renderizarHistorico()
+ renderizarHistorico()
 
 });11
 
