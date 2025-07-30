@@ -214,6 +214,7 @@ if (diferenca <= 0) {
         historicoDeDoses.splice(index, 1);
         salvarHistorico();
         renderizarHistorico(); // chama de novo para atualizar
+        
       }
     });
   });

@@ -1,15 +1,26 @@
+:root {
+  --cor-fundo: #f4f6f8;
+  --cor-principal: #007bff;
+  --cor-secundaria: #6c757d;
+  --texto: #333;
+  --branco: #ffffff;
+}
+
+*{
+  transition: all 0.3s ease
+}
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   background: #f5f7fa;
   margin: 0;
   padding: 20px;
 }
 
 .container {
-  max-width: 600px;
-  margin: auto;
+  max-width: 800px;
+  margin: 0 auto;
   background: white;
-  padding: 30px;
+  padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   margin-top: 10px;
@@ -19,6 +30,10 @@ h1 {
   text-align: center;
   margin-bottom: 30px;
   color: #3a3a3a;
+}
+h2{
+  margin-top: 2rem;
+  color: var(--cor-principal);
 }
 
 form {
@@ -77,6 +92,10 @@ button:hover {
   padding: 12px;
   border-radius: 6px;
   border-left: 5px solid #2e86de;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .campo-autocomplete {
@@ -284,6 +303,9 @@ form.editando {
 .medicamento-item {
   position: relative;
   padding-right: 120px; /* espaço para os botões no canto direito */
+}
+.conteiner-listaHistorico{
+  background-color: #cffad4;
 }
 
 .acoes {
