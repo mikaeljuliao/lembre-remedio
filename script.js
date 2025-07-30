@@ -176,24 +176,36 @@ if (diferenca <= 0) {
   return item;
 }
 
- function renderizarHistorico () {
-    const listaDoHistorico = document.getElementById('listaHistorico');
-    listaDoHistorico.innerHTML = '';
+function renderizarHistorico () {
+  const listaDoHistorico = document.getElementById('listaHistorico');
+  listaDoHistorico.innerHTML = '';
 
-    const historicoOrdenado = [...historicoDeDoses].reverse() // mais recente primeiro
+  const historicoOrdenado = [...historicoDeDoses].reverse(); // mais recente primeiro
 
-    historicoOrdenado.forEach(((registro) =>{
-      const item = document.createElement('li');
-      const data = new Date(registro.horarioTomado);
-      
-      item.innerHTML = `
+  historicoOrdenado.forEach((registro, index) => {
+    const item = document.createElement('li');
+    const data = new Date(registro.horarioTomado);
+    
+    item.innerHTML = `
       <strong>${registro.nome}</strong> - ${registro.dosagem} <br>
       Tomado em: ${data.toLocaleString()}<br>
       Intervalo: ${registro.intervalo}h
+      <br><button class="btn-remover-historico" data-index="${historicoDeDoses.length - 1 - index}">Remover</button>
     `;
     listaDoHistorico.appendChild(item);
-    }))
-  }
+  });
+
+  // ⬇️ Adiciona os eventos nos botões de remover
+  document.querySelectorAll('.btn-remover-historico').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const index = btn.dataset.index;
+      historicoDeDoses.splice(index, 1);
+      salvarHistorico();
+      redenrizarHistorico(); // atualiza a lista
+    });
+  });
+}
+  
 
   // Renderiza a lista de medicamentos salvos
   function renderizarListaDeMedicamentos() {
