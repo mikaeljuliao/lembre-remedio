@@ -196,13 +196,18 @@ if (diferenca <= 0) {
 
     // O índice real no array original (não o reverse)
     const indiceOriginal = historicoDeDoses.length - 1 - index;
+item.classList.add('item-historico');
 
-    item.innerHTML = `
-      <strong>${registro.nome}</strong> - ${registro.dosagem} <br>
-      Tomado em: ${data.toLocaleString()}<br>
-      Intervalo: ${registro.intervalo}h
-      <br><button class="btn-remover-historico" data-index="${indiceOriginal}">Remover</button>
-    `;
+item.innerHTML = `
+  <div class="info-historico">
+    <strong>${registro.nome}</strong> - ${registro.dosagem} <br>
+    Tomado em: ${data.toLocaleString()}<br>
+    Intervalo: ${registro.intervalo}h
+  </div>
+  <div class="area-botao">
+    <button class="btn-remover-historico" data-index="${indiceOriginal}">Remover</button>
+  </div>
+`;
     listaDoHistorico.appendChild(item);
   });
 

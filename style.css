@@ -1,3 +1,6 @@
+/* =================== */
+/* 🎨 VARIÁVEIS GERAIS */
+/* =================== */
 :root {
   --cor-fundo: #f4f6f8;
   --cor-principal: #007bff;
@@ -6,24 +9,19 @@
   --branco: #ffffff;
 }
 
-*{
-  transition: all 0.3s ease
-}
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #f5f7fa;
-  margin: 0;
-  padding: 20px;
+/* ======================= */
+/* 🌍 ESTILOS GLOBAIS      */
+/* ======================= */
+* {
+  transition: all 0.3s ease;
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-top: 10px;
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--cor-fundo);
+  margin: 0;
+  padding: 20px;
+  color: var(--texto);
 }
 
 h1 {
@@ -31,22 +29,54 @@ h1 {
   margin-bottom: 30px;
   color: #3a3a3a;
 }
-h2{
+
+h2 {
   margin-top: 2rem;
   color: var(--cor-principal);
 }
 
+/* ===================== */
+/* 📦 CONTAINER PRINCIPAL */
+/* ===================== */
+.container {
+  max-width: 800px;
+  margin: 10px auto 0;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ======================= */
+/* 📢 BANNER DE TOPO       */
+/* ======================= */
+.banner-topo {
+  width: 100%;
+  background-color: var(--cor-principal);
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  font-weight: bold;
+  font-size: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.banner-topo p {
+  margin: 0;
+  padding: 2px;
+  opacity: 1;
+}
+
+/* ============================= */
+/* 📝 FORMULÁRIO DE MEDICAMENTO */
+/* ============================= */
 form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-}
-p#status-edicao{
-   display: none;
-   color: #e67e22;
-   font-weight: bold;
-   font-size: 20px;
-   text-align: center;
 }
 
 label {
@@ -69,7 +99,7 @@ textarea {
 }
 
 button {
-  background-color: #2e86de;
+  background-color: var(--cor-principal);
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -80,6 +110,75 @@ button:hover {
   background-color: #1c5fc4;
 }
 
+.dica-horario {
+  color: #555;
+  font-size: 0.9rem;
+  margin: -8px 0 15px;
+  display: block;
+  box-shadow: 0 1px 0 var(--cor-principal);
+}
+
+/* ======================== */
+/* 🟠 MODO DE EDIÇÃO ATIVO */
+/* ======================== */
+#status-edicao {
+  display: none;
+  color: #e67e22;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
+
+form.editando {
+  color: black;
+}
+
+.modo-edicao {
+  animation: pulseEdit 1s infinite alternate;
+}
+
+@keyframes pulseEdit {
+  from {
+    box-shadow: 0 0 0px transparent;
+  }
+  to {
+    color: #e67e22;
+    font-size: 16.2px;
+  }
+}
+
+/* =========================== */
+/* ✅ MENSAGEM DE SUCESSO     */
+/* =========================== */
+.mensagem-de-sucesso {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #28a745;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ============================= */
+/* 📃 LISTA DE MEDICAMENTOS     */
+/* ============================= */
 #listaMedicamentos {
   margin-top: 20px;
   padding-left: 0;
@@ -87,17 +186,71 @@ button:hover {
 }
 
 .medicamento-item {
+  position: relative;
   background: #f0f8ff;
   margin-bottom: 10px;
   padding: 12px;
+  padding-right: 120px;
   border-radius: 6px;
-  border-left: 5px solid #2e86de;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  border-left: 5px solid var(--cor-principal);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 }
 
+/* =========================== */
+/* 🔘 BOTÕES DE AÇÃO          */
+/* =========================== */
+.acoes {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.acoes button {
+  padding: 11px 20px;
+  background-color: #e0eefad3;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-remover {
+  color: red;
+}
+
+.btn-remover:hover {
+  background-color: red;
+  color: white;
+}
+
+.btn-editar {
+  color: green;
+}
+
+.btn-editar:hover {
+  background-color: green;
+  color: white;
+}
+
+.btn-recomecar {
+  color: #0077cc;
+}
+
+.btn-recomecar:hover {
+  background-color: #0077cc;
+  color: white;
+}
+
+/* ========================== */
+/* 💊 AUTOCOMPLETE           */
+/* ========================== */
 .campo-autocomplete {
   position: relative;
 }
@@ -127,37 +280,56 @@ button:hover {
   background-color: #f0f0f0;
 }
 
-form.editando {
-  color:  black;
-  transition: all 0.3s ease;
+/* ======================= */
+/* 🧾 LISTA DO HISTÓRICO   */
+/* ======================= */
+#listaHistorico {
+  padding-left: 0;
+  list-style: none;
 }
 
-.modo-edicao {
-  animation: pulseEdit 1s infinite alternate;
+#listaHistorico li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0px 2px 4px var(--cor-principal);
 }
 
-@keyframes pulseEdit {
-  from {
-    box-shadow: 0 0 0px transparent;
-  }
-  to {
-    color:  #e67e22;
-    font-size: 16.2px;
-  }
+#listaHistorico .info-historico {
+  flex: 1;
+  font-size: 15px;
+  line-height: 1.4;
 }
 
+.btn-remover-historico {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* =========================== */
+/* 🔔 MODAL DE CONFIRMAÇÃO    */
+/* =========================== */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
-  display: flex;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
   justify-content: center;
   align-items: center;
   z-index: 999;
-  display: none;
 }
 
 .modal-box {
@@ -167,7 +339,7 @@ form.editando {
   text-align: center;
   max-width: 300px;
   width: 100%;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .modal-botoes {
@@ -194,65 +366,9 @@ form.editando {
   color: white;
 }
 
-.mensagem-de-sucesso {
-  display: none;
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #28a745; /* verde sucesso */
-  color: white;
-  padding: 12px 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  font-weight: bold;
-  z-index: 9999;
-  animation: aparecer 0.3s ease-in-out;
-}
-
-@keyframes aparecer {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-}
-
-.banner-topo{
-    width: 100%;
-    background-color: #0077cc;
-    color: white;
-    text-align: center;
-    padding: 10px 0px;
-    font-weight: bold;
-    font-size: 1rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 999;
-    transition: opacity 0.5s ease-in-out;
-}
-.banner-topo p {
-    margin: 0;
-    padding: 2px;
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
-   
-}
-.dica-horario{
-  color: #555;
-  font-size: 0.9rem;
-  margin-top: 4px;
-  display: block;
-  box-shadow: 0px 1px 0px #2e86de;
-  margin-top: -8px;
-  margin-bottom: 15px;
-}
-
-
+/* ========================= */
+/* 🔊 CONTROLE DE ALARME    */
+/* ========================= */
 .controle-alarme {
   position: fixed;
   top: 50%;
@@ -268,7 +384,6 @@ form.editando {
   text-align: center;
   font-size: 1.2rem;
   font-weight: bold;
-  animation: fadeIn 0.3s ease;
 }
 
 .controle-alarme button {
@@ -285,74 +400,4 @@ form.editando {
 
 .controle-alarme button:hover {
   background-color: #e60000;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -60%);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-}
-
-
-
-.medicamento-item {
-  position: relative;
-  padding-right: 120px; /* espaço para os botões no canto direito */
-}
-.conteiner-listaHistorico{
-  background-color: #cffad4;
-}
-
-.acoes {
-  position: absolute;
-  top: 20px;
-  right: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.acoes button {
-  padding: 11px 20px;
-  background-color:  #e0eefad3;
-  border: 1px solid #000000;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-
-.btn-remover {
- 
-  color: red;
-}
-
-.btn-remover:hover {
-  color: white;
-  background-color: red;
-}
-
-.btn-editar { 
-  color: green;
-}
-
-.btn-editar:hover {
-  color: white;
-  background-color: green;
-}
-
-.btn-recomecar {
-  color: #0077cc;
- 
-}
-
-.btn-recomecar:hover {
-  background-color: #0077cc;
-  color: white;
 }

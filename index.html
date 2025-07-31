@@ -4,77 +4,92 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LembreMed 💊</title>
+  
+  <!-- ✅ Estilos -->
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
- 
+
 <body>
-   
+  <!-- 🔔 Banner fixo de dicas -->
+  <div id="banner-mensagens" class="banner-topo">
+    <p id="texto-banner">💡 Dica: você pode editar um medicamento clicando em 'Editar'.</p>
+  </div>
+
+  <!-- ✅ Conteúdo Principal -->
   <main class="container">
     <h1>LembreMed 💊</h1>
 
+    <!-- 🧾 Formulário de Cadastro -->
     <form id="medForm">
-        <p id="status-edicao"> Modo edição ativado</p>
+      <p id="status-edicao">Modo edição ativado</p>
+
+      <!-- 🔎 Campo com Autocomplete -->
       <div class="campo-autocomplete">
         <label for="nome">Nome do Medicamento:</label>
-        <input type="text" id="nome" name="nome" autocomplete="Digijte o medicamento" required />
+        <input type="text" id="nome" name="nome" required />
         <ul id="sugestoes"></ul>
       </div>
 
+      <!-- 🧪 Dosagem -->
       <label for="dosagem">Dosagem:</label>
-      <input type="text" id="dosagem" name="dosagem" autocomplete="EX: 500mg" required />
+      <input type="text" id="dosagem" name="dosagem" placeholder="Ex: 500mg" required />
 
+      <!-- ⏰ Horário -->
       <label for="horario">Horário:</label>
       <input type="number" id="horario" placeholder="A cada quantas horas?" step="0.01" min="0.01" />
       <small class="dica-horario">
-    ⏱️ Você pode usar horas com vírgula! <br />
-     Exemplos: 1,5 = 1h e 30min 0,5 = 30min | 0,25 = 15min | 0,1 = 6min ou 0,01 = 35sgs
-    </small>
+        ⏱️ Você pode usar horas com vírgula!<br />
+        Ex: 1,5 = 1h30min | 0,5 = 30min | 0,25 = 15min | 0,1 = 6min | 0,01 = 35s
+      </small>
 
+      <!-- 🗒️ Observações -->
       <label for="obs">Observações:</label>
-      <textarea id="obs" name="obs"></textarea>
+      <textarea id="obs" name="obs" placeholder="Digite algo opcional..."></textarea>
 
+      <!-- 💾 Botão Adicionar -->
       <button type="submit">Adicionar Medicamento</button>
     </form>
 
+    <!-- ✅ Feedback de sucesso -->
     <div id="mensagemDeSucesso" class="mensagem-de-sucesso">
-       <p> Medicamento salvo com sucesso! </p>
+      <p>Medicamento salvo com sucesso!</p>
     </div>
 
+    <!-- 💊 Lista de Medicamentos -->
     <section>
-      
       <h2>Meus Medicamentos</h2>
       <ul id="listaMedicamentos"></ul>
-     
     </section>
 
+    <!-- 📋 Histórico de Doses -->
     <section>
-      <h2>Hístorico de Doses</h2>
-      <div class="conteiner-listaHistorico">
+      <h2>Histórico de Doses</h2>
       <ul id="listaHistorico"></ul>
-      </div>
     </section>
   </main>
-  
+
+  <!-- ⚠️ Modal de Confirmação -->
   <div id="modalConfirmacao" class="modal-overlay">
-  <div class="modal-box">
-    <p id="modalMensagem">Tem certeza que deseja remover este medicamento?</p>
-    <div class="modal-botoes">
-      <button id="btnCancelarModal">Cancelar</button>
-      <button id="btnConfirmarModal">Remover</button>
+    <div class="modal-box">
+      <p id="modalMensagem">Tem certeza que deseja remover este medicamento?</p>
+      <div class="modal-botoes">
+        <button id="btnCancelarModal">Cancelar</button>
+        <button id="btnConfirmarModal">Remover</button>
+      </div>
     </div>
   </div>
+
+  <!-- 🔔 Controle de Alarme -->
+  <div id="controle-alarme" class="controle-alarme" style="display: none;">
+    <p>🔔 Alarme tocando!</p>
+    <button id="btnPararAlarme">Parar alarme</button>
   </div>
 
-  <div id="banner-mensagens" class="banner-topo">
-    <p id="texto-banner"> Bem-vindo ao LembreMed</p>
-  </div>
+  <!-- 🔉 Áudio do Alarme -->
   <audio id="alarme-audio" src="sons/042245_casio-f-91w-alarm-76669.mp3" preload="auto"></audio>
 
-<div id="controle-alarme" class="controle-alarme" style="display: none;">
-  <p>🔔 Alarme tocando!</p>
-  <button id="btnPararAlarme">Parar alarme</button>
-</div>
+  <!-- 📜 Script JS -->
   <script src="script1.js"></script>
 </body>
 </html>
