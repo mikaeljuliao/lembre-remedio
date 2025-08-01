@@ -578,6 +578,15 @@ textarea {
 /* ================================= */
 /* 📱 TELAS MÉDIAS: 501px–700px     */
 /* ================================= */
+
+
+
+
+
+
+
+
+
 @media (min-width: 501px) and (max-width: 700px) {
   h1 {
     font-size: 1.6rem;
@@ -598,7 +607,120 @@ textarea {
     font-size: 0.85rem;
     padding: 10px 16px;
   }
+
+  /* ===================== */
+/* 📦 CONTAINER PRINCIPAL */
+/* ===================== */
+.container {
+  max-width: 800px;
+  margin: 30px auto 0;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
+  
+/* ======================= */
+/* 📢 BANNER DE TOPO       */
+/* ======================= */
+.banner-topo {
+
+  padding: 0px 0px;
+  
+}
+
+.banner-topo p {
+ 
+ 
+  margin: 0;
+  padding: 8px;
+  opacity: 1;
+}
+}
+
+
+
+/* ============================= */
+/* 📝 FORMULÁRIO DE MEDICAMENTO */
+/* ============================= */
+
+input,
+textarea,
+button {
+  padding: 10px;
+  font-size: 15px;
+  width: 100%;
+}
+textarea {
+  resize: vertical;
+}
+
+.dica-horario {
+  margin: 0px 0 15px;
+}
+
+
+
+/* ============================= */
+/* 📃 LISTA DE MEDICAMENTOS     */
+/* ============================= */
+
+.medicamento-item {
+ padding-right: 0;
+ 
+ flex-direction: column;
+}
+
+
+/* =========================== */
+/* 🔘 BOTÕES DE AÇÃO          */
+/* =========================== */
+.acoes {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: 9px;
+  margin-bottom: 18px;
+
+}
+
+.acoes button {
+  width: 100%;
+
+  
+}
+
+
+
+.btn-editar {
+  color: green;
+}
+
+.btn-editar:hover {
+  background-color: green;
+  color: white;
+}
+
+.btn-recomecar {
+  color: #0077cc;
+}
+
+
+
+/* ======================= */
+/* 🧾 LISTA DO HISTÓRICO   */
+/* ======================= */
+
+#listaHistorico li {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
 
 /* ================================= */
 /* 💻 TELAS INTERMEDIÁRIAS: 701–1000px */
