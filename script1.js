@@ -148,7 +148,8 @@ if (diferenca <= 0) {
   `;
 
   const observacoes = document.createElement('div');
-  observacoes.innerHTML = `<strong> Observação: </strong>${medicamento.observacoes}`;
+  observacoes.innerHTML = `<strong>Observação: 
+  </strong><span class="texto-observacao">${medicamento.observacoes}</span>`;
 
   const botoes = document.createElement('div');
   botoes.classList.add('acoes')
