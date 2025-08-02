@@ -422,6 +422,8 @@ form.editando {
 
 
 
+
+
 /* ================================ */
 /* 📱 TELAS PEQUENAS: 300px–500px  */
 /* ================================ */
@@ -584,12 +586,8 @@ textarea {
 
 
 
-
-
-
-
 @media (min-width: 501px) and (max-width: 700px) {
-  h1 {
+    h1 {
     font-size: 1.6rem;
   }
 
@@ -638,7 +636,7 @@ textarea {
   padding: 8px;
   opacity: 1;
 }
-}
+
 
 
 /* ============================= */
@@ -714,37 +712,132 @@ textarea {
 /* ======================= */
 
 #listaHistorico li {
+  position: relative;
   display: flex;
   justify-content: space-between;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: center;
   gap: 4px;
 }
+
+
+}
+
+
+
+
+
+
+
 
 
 /* ================================= */
 /* 💻 TELAS INTERMEDIÁRIAS: 701–1000px */
 /* ================================= */
 @media (min-width: 701px) and (max-width: 1000px) {
-  .container {
-    padding: 2rem 3rem;
-  }
 
-  h1 {
-    font-size: 2rem;
-  }
+  
+  /* ===================== */
+/* 📦 CONTAINER PRINCIPAL */
+/* ===================== */
+.container {
+  max-width: 1000px;
+  margin: 25px auto 0;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
 
-  .controle-alarme {
-    width: 400px;
-  }
+  
+/* ======================= */
+/* 📢 BANNER DE TOPO       */
+/* ======================= */
+.banner-topo {
 
-  .acoes button {
-    font-size: 0.9rem;
-    padding: 12px 20px;
-  }
+  padding: 5px 0px;
+  
+}
+.banner-topo p {
+  margin: 0;
+  padding: 10px;
+  opacity: 1;
+}
 
-  .btn-remover-historico {
-    font-size: 0.9rem;
-    padding: 10px 18px;
-  }
+/* ============================= */
+/* 📝 FORMULÁRIO DE MEDICAMENTO */
+/* ============================= */
+
+input,
+textarea,
+button {
+  padding: 13px;
+  font-size: 18px;
+  width: 100%;
+}
+.dica-horario {
+  margin: 0px 0 18px;
+}
+
+
+label {
+  font-weight: bold;
+  font-size: 19px;
+}
+button {
+  padding: 15px;
+  font-size: 20px;
+}
+
+
+/* ============================= */
+/* 📃 LISTA DE MEDICAMENTOS     */
+/* ============================= */
+
+.medicamento-item {
+  font-size: 19px;
+}
+
+
+/* =========================== */
+/* 🔘 BOTÕES DE AÇÃO          */
+/* =========================== */
+.acoes {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  flex-direction: column;
+  width: auto;
+  margin: 0;
+}
+
+.acoes button {
+  width: 100%;
+
+}
+
+
+/* ======================= */
+/* 🧾 LISTA DO HISTÓRICO   */
+/* ======================= */
+
+#listaHistorico li {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  font-size: 23px;
+  font-weight: 700;
+}
+.btn-remover-historico {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px;
+
+  font-size: 15px;
+ 
+}
 }
