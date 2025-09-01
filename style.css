@@ -220,12 +220,12 @@ form.editando {
 /* 🔘 BOTÕES DE AÇÃO          */
 /* =========================== */
 .acoes {
-  position: absolute;
+position: absolute;
   top: 20px;
   right: 15px;
-  display: flex;
   flex-direction: column;
-  gap: 10px;
+  width: auto;
+  margin: 0;
 }
 
 .acoes button {
@@ -734,7 +734,7 @@ textarea {
 /* ================================= */
 /* 💻 TELAS INTERMEDIÁRIAS: 701–1000px */ 
 /* ================================= */
-@media (min-width: 701px) and (max-width: 1000px) {
+@media (min-width: 701px) {
 
   
   /* ===================== */
@@ -809,6 +809,7 @@ button {
   flex-direction: column;
   width: auto;
   margin: 0;
+  gap: 10px;
 }
 
 .acoes button {
