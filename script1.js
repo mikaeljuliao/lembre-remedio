@@ -407,7 +407,9 @@ item.innerHTML = `
 
 
 /*dica pra mim no futuro que aprendi rezolvendo bug da função criarItemDaLista:
-Sempre que for usar setInterval() ou setTimeout() e exibir atualizações no DOM, certifique-se de que o elemento que você está atualizando não será destruído ou sobrescrito depois. Prefira createElement + appendChild em vez de .innerHTML += .... */
+Sempre que for usar setInterval() ou setTimeout() e exibir atualizações no DOM, 
+certifique-se de que o elemento que você está atualizando não será destruído ou 
+sobrescrito depois. Prefira createElement + appendChild em vez de .innerHTML += .... */
 
 
 /* 
